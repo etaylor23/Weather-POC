@@ -1,0 +1,12 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "http-server": "^0.8.5",
+    "mongoose": "^4.4.5",
+    "q": "^1.4.1"
+  }
+}
