@@ -1,4 +1,4 @@
-var charting = function(response) {
+var charting = function(response, field) {
     var parseDate = d3.time.format("%Y/%m/%d %S:%U").parse;
 
     var data = response.data;
@@ -7,9 +7,11 @@ var charting = function(response) {
 
 
     /*** Prepare Data ***/
-    data.forEach(function(d) {
-      d.dateTime = parseDate(d.dateTime);
-    })
+    if(typeof(field) === "undefined") {
+      data.forEach(function(d) {
+        d.dateTime = parseDate(d.dateTime);
+      })
+    }
 
     data.forEach(function(d) {
         var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -55,7 +57,12 @@ var charting = function(response) {
     /*** Prepare Groups ***/
     var atmosphericPressureGroup = atmosphericPressureDim.group();
     var yearGroup = yearDim.group();
-    var rainfallGroup = dateDim.group().reduceSum(dc.pluck('rainfallMM'));
+
+    if(typeof(field) !== "undefined") {
+      var lineChartGroup = dateDim.group().reduceSum(dc.pluck(field));
+    } else {
+      var lineChartGroup = dateDim.group().reduceSum(dc.pluck('rainfallMM'));
+    }
     var monthGroup = monthDimension.group();
     var windspeedGroup = dateDim.group().reduceSum(dc.pluck('windSpeedMS'));
     var surfaceTempGroup = dateDim.group().reduceSum(dc.pluck('surfaceTemperatureC'));
@@ -120,14 +127,16 @@ var charting = function(response) {
         .innerRadius(80)
         .ordinalColors(["#1d1847","#28a0c7","#6c6998","#ffcb31","#f05a3f","#00a481"])
 
+    var yLabel = typeof(field) !== "undefined" ? field : "Rainfall (mm)";
+
     lineChart
         .width(900)
         .height(350)
         .dimension(dateDim)
-        .group(rainfallGroup)
+        .group(lineChartGroup)
         .x(d3.time.scale().domain([minDate,maxDate]))
         .xAxisLabel("Time")
-        .yAxisLabel("Rainfall (mm)")
+        .yAxisLabel(yLabel)
         .ordinalColors(["#1d1847","#28a0c7","#6c6998","#ffcb31","#f05a3f","#00a481"])
 
       monthChart.width(80)

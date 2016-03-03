@@ -5,7 +5,42 @@
     <div class="col-md-9">
       <div class="x_panel">
         <div class="x_title">
-          <h3>Rainfall Over Time</h3>
+          <ul class="nav navbar-right panel_toolbox">
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a data-dimension="atmosphericPressureMBar">Atmospheric Pressure</a>
+                      </li>
+                      <li>
+                        <a data-dimension="rainfallMM">Rainfall</a>
+                      </li>
+                      <li>
+                        <a data-dimension="windSpeedMS">Windspeed</a>
+                      </li>
+                      <li>
+                        <a data-dimension="windDirectionDegrees">Wind Direction Degrees</a>
+                      </li>
+                      <li>
+                        <a data-dimension="surfaceTemperatureC">Surface Temperature</a>
+                      </li>
+                      <li>
+                        <a data-dimension="relativeHumidityPercent">Relative Humidity</a>
+                      </li>
+                      <li>
+                        <a data-dimension="solarFluxKwM2">Solar Flux</a>
+                      </li>
+                      <li>
+                        <a data-dimension="batteryV">Battery</a>
+                      </li>
+                      <li>
+                        <a data-dimension="relativeHumidityPercent" href="#">Relative Humidity Percent</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+          <h2>Weather Metrics Over Time</h2>
+
         </div>
         <div class="x_content">
           <div id="line-chart">

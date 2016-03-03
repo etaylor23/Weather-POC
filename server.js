@@ -3,6 +3,12 @@ var app = express();
 var http = require('http').Server(app);
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bodyParser = require('body-parser');
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 mongoose.connect('mongodb://localhost/WeatherPOC', function (error) {
     if (error) {
