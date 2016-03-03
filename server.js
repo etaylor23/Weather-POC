@@ -31,33 +31,6 @@ var WeatherSchema = new Schema({
 
 var Weather = mongoose.model('weatherstats', WeatherSchema);
 
-/*
-var test = new Weather({
-  "dateTime" : "2052/01/01 00:01",
-  "atmosphericPressureMBar" : 1016,
-  "rainfallMM" : 0,
-  "windSpeedMS" : 7.65,
-  "windDirectionDegrees" : 199.9,
-  "surfaceTemperatureC" : 8.98,
-  "relativeHumidityPercent" : 71.59999999999999,
-  "solarFluxKwM2" : 0,
-  "batteryV" : 13.75
-});
-
-test.save(function(err, thor) {
-  if (err)  {
-    return console.error(err)
-  } else {
-    console.log("Saved")
-    console.dir(JSON.stringify(thor));
-  }
-});*/
-
-
-//console.log(Weather);
-
-
-
 app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -78,8 +51,6 @@ app.get('/data', function (req, res) {
       console.log(err)
     }
   });
-
-
 })
 
 http.listen(3000, function () {
